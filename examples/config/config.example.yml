@@ -1,0 +1,4 @@
+imap_connection:
+    username: mail.filter@aymanrb.com
+    password: secretPassword@Mailbox
+    imap_server: imap.example.org
