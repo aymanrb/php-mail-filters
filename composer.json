@@ -1,16 +1,17 @@
 {
-  "name": "aymanrb/mail_filters",
-  "description": "A library to help you create Gmail like mail filters in your PHP Application",
+  "name": "aymanrb/php-mail-filters",
+  "description": "A library to help you create GMAIL like mail filters in your PHP Application",
   "type": "library",
   "license": "MIT",
   "require": {
     "ext-imap": "*",
-    "php": ">=7.1.0"
+    "php": ">=7.2.0"
   },
   "require-dev": {
     "symfony/yaml": "^3.4",
     "ddeboer/imap": "^1.5",
-    "php-imap/php-imap": "^3.0"
+    "php-imap/php-imap": "^3.0",
+    "phpunit/phpunit": "^8.4"
   },
   "autoload": {
     "psr-4": {
