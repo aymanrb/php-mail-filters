@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace MailFilters\Adapters\DdeboerImap;
 
 use Ddeboer\Imap\ConnectionInterface;
+use Ddeboer\Imap\Exception\MessageCopyException;
+use Ddeboer\Imap\Exception\MessageMoveException;
+use Ddeboer\Imap\Exception\MessageUndeleteException;
 use Ddeboer\Imap\Message;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 
@@ -44,23 +47,35 @@ class MessageAdapter implements MailMessageAdapterInterface
     {
         $destinationMailbox = $this->imapConnection->getMailbox($destinationDirectoryName);
 
-        $this->imapMessage->copy($destinationMailbox);
+        try {
+            $this->imapMessage->copy($destinationMailbox);
+        } catch (MessageCopyException $exception) {
+            return false;
+        }
 
         return true;
     }
 
-    public function move(string $destinationDirectoryName): bool
+    public function moveTo(string $destinationDirectoryName): bool
     {
         $destinationMailbox = $this->imapConnection->getMailbox($destinationDirectoryName);
 
-        $this->imapMessage->move($destinationMailbox);
+        try {
+            $this->imapMessage->move($destinationMailbox);
+        } catch (MessageMoveException $exception) {
+            return false;
+        }
 
         return true;
     }
 
     public function delete(): bool
     {
-        $this->imapMessage->delete();
+        try {
+            $this->imapMessage->delete();
+        } catch (MessageUndeleteException $exception) {
+            return false;
+        }
 
         return true;
     }

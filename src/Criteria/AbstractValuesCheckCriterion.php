@@ -6,7 +6,7 @@ namespace MailFilters\Criteria;
 
 use MailFilters\Adapters\MailMessageAdapterInterface;
 
-abstract class AbstractCriterion
+abstract class AbstractValuesCheckCriterion implements CriterionInterface
 {
     /**
      * The values to filter against
@@ -63,6 +63,6 @@ abstract class AbstractCriterion
     {
         $searchPattern = str_replace('*', '(.*)', $needle);
 
-        return (bool) preg_match('|' . $searchPattern . '|i', $haystack);
+        return (bool) preg_match('|^' . $searchPattern . '$|i', $haystack);
     }
 }

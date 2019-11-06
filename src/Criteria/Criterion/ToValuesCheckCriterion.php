@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace MailFilters\Criteria\Criterion;
 
 use MailFilters\Adapters\MailMessageAdapterInterface;
-use MailFilters\Criteria\AbstractCriterion;
+use MailFilters\Criteria\AbstractValuesCheckCriterion;
 
-class ToCriterion extends AbstractCriterion
+class ToValuesCheckCriterion extends AbstractValuesCheckCriterion
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage
@@ -15,9 +15,9 @@ class ToCriterion extends AbstractCriterion
      */
     public function checkCriterion(MailMessageAdapterInterface $mailMessage): bool
     {
-        foreach ($this->getValues() as $filter_value) {
+        foreach ($this->getValues() as $filterValue) {
             foreach ($mailMessage->getToAddresses() as $toEmailAddress) {
-                if ($this->partialFilterMatch($filter_value, $toEmailAddress)) {
+                if ($this->partialFilterMatch($filterValue, $toEmailAddress)) {
                     return true;
                 }
             }

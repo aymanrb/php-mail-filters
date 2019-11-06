@@ -26,8 +26,6 @@ abstract class AbstractBaseAction
 
     /**
      * @param MailMessageAdapterInterface $filteredMessage
-     *
-     * @return array
      */
-    abstract public function triggerAction(MailMessageAdapterInterface $filteredMessage): array;
+    abstract public function triggerAction(MailMessageAdapterInterface $filteredMessage): void;
 }

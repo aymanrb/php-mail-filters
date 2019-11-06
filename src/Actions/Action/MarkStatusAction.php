@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MailFilters\Actions\Action;
 
 use MailFilters\Actions\AbstractBaseAction;
+use MailFilters\Actions\ActionConstantsInterface;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 use MailFilters\Exception\MailActionException;
 
@@ -28,10 +29,8 @@ class MarkStatusAction extends AbstractBaseAction
     /**
      * @param MailMessageAdapterInterface $filteredMessage
      * @throws MailActionException
-     *
-     * @return array
      */
-    public function triggerAction(MailMessageAdapterInterface $filteredMessage): array
+    public function triggerAction(MailMessageAdapterInterface $filteredMessage): void
     {
         switch ($this->targetStatus) {
             case self::SET_MSG_READ:
@@ -47,6 +46,8 @@ class MarkStatusAction extends AbstractBaseAction
                 throw new MailActionException('Unknown target status: ' . $this->targetStatus);
         }
 
-        return ['Message Status Changed' => ucwords($this->targetStatus)];
+        $this->actionReturns = [
+            ActionConstantsInterface::STATUS_CHANGED => ucwords($this->targetStatus)
+        ];
     }
 }

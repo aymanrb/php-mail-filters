@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace MailFilters\Criteria\Criterion;
 
 use MailFilters\Adapters\MailMessageAdapterInterface;
-use MailFilters\Criteria\AbstractCriterion;
-use MailFilters\Exception\MailCriteriaException;
+use MailFilters\Criteria\CriterionInterface;
 
-class AttachmentsCriterion extends AbstractCriterion
+class AttachmentsCriterion implements CriterionInterface
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage
@@ -18,14 +17,5 @@ class AttachmentsCriterion extends AbstractCriterion
     public function checkCriterion(MailMessageAdapterInterface $mailMessage): bool
     {
         return $mailMessage->hasAttachments();
-    }
-
-    /**
-     * @param array $values
-     * @throws MailCriteriaException
-     */
-    public function setValues(array $values): void
-    {
-        throw new MailCriteriaException('setValues() call is not allowed for AttachmentsMailCriteria.');
     }
 }

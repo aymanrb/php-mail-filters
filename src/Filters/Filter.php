@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace MailFilters\Filters;
 
-use Ddeboer\Imap\Message;
 use MailFilters\Actions\AbstractBaseAction;
 use MailFilters\Adapters\MailMessageAdapterInterface;
-use MailFilters\Criteria\AbstractCriterion;
+use MailFilters\Criteria\CriterionInterface;
 
 class Filter
 {
@@ -19,7 +18,7 @@ class Filter
 
     /**
      * The criteria to be check against for this filter
-     * @var AbstractCriterion[]
+     * @var CriterionInterface[]
      */
     protected $criteria = [];
 
@@ -80,11 +79,11 @@ class Filter
     /**
      * Adds a Criterion to check the given email message against
      *
-     * @param AbstractCriterion $criterion
+     * @param CriterionInterface $criterion
      *
      * @return Filter
      */
-    public function addCriterion(AbstractCriterion $criterion): Filter
+    public function addCriterion(CriterionInterface $criterion): Filter
     {
         $this->criteria[] = $criterion;
 
@@ -145,7 +144,16 @@ class Filter
         $this->filterMatched = true;
 
         foreach ($this->actions as $filterAction) {
-            $this->filterReturns += $filterAction->triggerAction($mailMessage);
+            $filterAction->triggerAction($mailMessage);
+
+            if (empty($filterAction->getActionReturns())) {
+                continue;
+            }
+
+            $this->filterReturns = array_merge_recursive(
+                $this->filterReturns,
+                $filterAction->getActionReturns()
+            );
         }
     }
 

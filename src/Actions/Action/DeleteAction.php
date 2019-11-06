@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MailFilters\Actions\Action;
 
 use MailFilters\Actions\AbstractBaseAction;
+use MailFilters\Actions\ActionConstantsInterface;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 
 class DeleteAction extends AbstractBaseAction
@@ -14,11 +15,12 @@ class DeleteAction extends AbstractBaseAction
      *
      * @return array
      */
-    public function triggerAction(MailMessageAdapterInterface $filteredMessage): array
+    public function triggerAction(MailMessageAdapterInterface $filteredMessage): void
     {
-        $filteredMessage->delete();
+        $isDeleted = $filteredMessage->delete();
 
-        return ['Message Deleted' => true];
-
+        $this->actionReturns = [
+            ActionConstantsInterface::IS_DELETED => $isDeleted,
+        ];
     }
 }

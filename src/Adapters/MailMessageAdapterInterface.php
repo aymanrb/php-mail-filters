@@ -22,7 +22,7 @@ interface MailMessageAdapterInterface
      *
      * @return bool
      */
-    public function move(string $destinationDirectoryName): bool;
+    public function moveTo(string $destinationDirectoryName): bool;
 
     /**
      * Delete message.

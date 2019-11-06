@@ -35,7 +35,7 @@ class MessageAdapter implements MailMessageAdapterInterface
         return true;
     }
 
-    public function move(string $destinationDirectoryName): bool
+    public function moveTo(string $destinationDirectoryName): bool
     {
         $this->imapMailbox->moveMail($this->imapMessage->id, $destinationDirectoryName);
 

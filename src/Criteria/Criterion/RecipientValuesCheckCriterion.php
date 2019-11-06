@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace MailFilters\Criteria\Criterion;
 
 use MailFilters\Adapters\MailMessageAdapterInterface;
-use MailFilters\Criteria\AbstractCriterion;
+use MailFilters\Criteria\AbstractValuesCheckCriterion;
 
-class RecipientCriterion extends AbstractCriterion
+class RecipientValuesCheckCriterion extends AbstractValuesCheckCriterion
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage
@@ -21,9 +21,9 @@ class RecipientCriterion extends AbstractCriterion
             $mailMessage->getBccAddresses()
         );
 
-        foreach ($this->getValues() as $filter_value) {
+        foreach ($this->getValues() as $filterValue) {
             foreach ($toMails as $recipientMail) {
-                if ($this->partialFilterMatch($filter_value, $recipientMail)) {
+                if ($this->partialFilterMatch($filterValue, $recipientMail)) {
                     return true;
                 }
             }

@@ -3,12 +3,12 @@ require_once __DIR__ . '/connection/BarbushinImapConnection.php';
 
 use MailFilters\Actions\Action\MarkStatusAction;
 use MailFilters\Actions\Action\ReturnValuesAction;
-use MailFilters\Criteria\Criterion\ToCriterion;
+use MailFilters\Criteria\Criterion\ToValuesCheckCriterion;
 use MailFilters\Filters\Filter;
 use MailFilters\MailFiltersCollection;
 
 //prepare the criteria
-$toMailCriterion = new ToCriterion(['ceo@example.com', 'ceo@example.net']);
+$toMailCriterion = new ToValuesCheckCriterion(['ceo@example.com', 'ceo@example.net']);
 
 //prepare the actions
 $markAsReadAction = new MarkStatusAction(MarkStatusAction::SET_MSG_READ);

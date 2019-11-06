@@ -63,7 +63,7 @@ class MailFiltersCollection
 
         foreach ($this->filters as $filter) {
             if (!empty($filter->getFilterReturns())) {
-                $filterReturns += $filter->getFilterReturns();
+                $filterReturns += array_merge_recursive($filter->getFilterReturns());
             }
         }
 
