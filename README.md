@@ -24,7 +24,7 @@ Currently the adapter is implemented for the following IMAP libraries:
  	- Mark message status (Read, Unread and Important)
  	
  ### Requirements:
- * PHP 7.1+
+ * PHP 7.2+
  * PHP IMAP extension must be installed and activated
  * A PHP IMAP library to read messages (preferably use one of the 2 listed above if you have none, or write an adapter to the one you are using) 
  	
@@ -62,7 +62,4 @@ Currently the adapter is implemented for the following IMAP libraries:
 
 
 ##### In Progress (Unfinished work):
- * Adding a 'Bounce' or 'Forward' mail "Action"
- 
-##### Future Plans:
- * Adding tests to the library
+ * Adding unit and functional tests to the library
