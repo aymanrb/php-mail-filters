@@ -7,7 +7,7 @@ namespace MailFilters\Criteria\Criterion;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 use MailFilters\Criteria\AbstractValuesCheckCriterion;
 
-class ContentValuesCheckCriterion extends AbstractValuesCheckCriterion
+class ContentCriterion extends AbstractValuesCheckCriterion
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage
@@ -19,7 +19,7 @@ class ContentValuesCheckCriterion extends AbstractValuesCheckCriterion
         $mailBody = $this->getMailBody($mailMessage);
 
         foreach ($this->getValues() as $filterValue) {
-            if ($this->partialFilterMatch($mailBody, $filterValue)) {
+            if ($this->partialFilterMatch($filterValue, $mailBody)) {
                 return true;
             }
         }
@@ -34,10 +34,10 @@ class ContentValuesCheckCriterion extends AbstractValuesCheckCriterion
      */
     private function getMailBody(MailMessageAdapterInterface $mailMessage): string
     {
-        if ($mailMessage->getBodyText() !== null) {
+        if (!empty($mailMessage->getBodyText())) {
             return $mailMessage->getBodyText();
         }
 
-        return $mailMessage->getBodyHtml();
+        return strip_tags($mailMessage->getBodyHtml());
     }
 }

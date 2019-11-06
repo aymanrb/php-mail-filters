@@ -38,6 +38,7 @@ Thumbs.db
 attachments/*
 docs/*
 config.yml
+.phpunit.result.cache
 
 # Git Directories #
 ######################

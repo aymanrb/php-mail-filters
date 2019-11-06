@@ -9,13 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 class AttachmentsCriterionTest extends TestCase
 {
-
     public function testCheckCriterionWithAttachments()
     {
         $dummyMessageMock = $this->createMessageAdapterMock(true);
 
         $hasAttachmentCriterion = new AttachmentsCriterion();
-
         $hasAttachmentCheckResults = $hasAttachmentCriterion->checkCriterion($dummyMessageMock);
 
         $this->assertIsBool($hasAttachmentCheckResults);
@@ -27,7 +25,6 @@ class AttachmentsCriterionTest extends TestCase
         $dummyMessageMock = $this->createMessageAdapterMock(false);
 
         $hasAttachmentCriterion = new AttachmentsCriterion();
-
         $hasAttachmentCheckResults = $hasAttachmentCriterion->checkCriterion($dummyMessageMock);
 
         $this->assertIsBool($hasAttachmentCheckResults);

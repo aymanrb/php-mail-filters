@@ -7,25 +7,18 @@ namespace MailFilters\Criteria\Criterion;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 use MailFilters\Criteria\AbstractValuesCheckCriterion;
 
-class RecipientValuesCheckCriterion extends AbstractValuesCheckCriterion
+class FromCriterion extends AbstractValuesCheckCriterion
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage
+     *
      * @return bool
      */
     public function checkCriterion(MailMessageAdapterInterface $mailMessage): bool
     {
-        $toMails = array_merge(
-            $mailMessage->getToAddresses(),
-            $mailMessage->getCcAddresses(),
-            $mailMessage->getBccAddresses()
-        );
-
         foreach ($this->getValues() as $filterValue) {
-            foreach ($toMails as $recipientMail) {
-                if ($this->partialFilterMatch($filterValue, $recipientMail)) {
-                    return true;
-                }
+            if ($this->partialFilterMatch($filterValue, $mailMessage->getSenderAddress())) {
+                return true;
             }
         }
 
