@@ -4,7 +4,7 @@ namespace MailFilters\Tests\unit\Criteria\Criterion;
 
 use MailFilters\Adapters\MailMessageAdapterInterface;
 use MailFilters\Criteria\Criterion\AttachmentsCriterion;
-use MailFilters\Criteria\Criterion\SubjectValuesCheckCriterion;
+use MailFilters\Criteria\Criterion\SubjectCriterion;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class SubjectValuesCriterionTest extends TestCase
     {
         $dummyMessageMock = $this->createMessageAdapterMock('Welcome to Mail Filter Project');
 
-        $subjectValuesCriterion = new SubjectValuesCheckCriterion(['Welcome to Mail Filter Project']);
+        $subjectValuesCriterion = new SubjectCriterion(['Welcome to Mail Filter Project']);
 
         $subjectCheckResults = $subjectValuesCriterion->checkCriterion($dummyMessageMock);
 
@@ -27,7 +27,7 @@ class SubjectValuesCriterionTest extends TestCase
     {
         $dummyMessageMock = $this->createMessageAdapterMock('Welcome to Mail Filter Project');
 
-        $subjectValuesCriterion = new SubjectValuesCheckCriterion(['Welcome to *']);
+        $subjectValuesCriterion = new SubjectCriterion(['Welcome to *']);
 
         $subjectCheckResults = $subjectValuesCriterion->checkCriterion($dummyMessageMock);
 
@@ -39,7 +39,7 @@ class SubjectValuesCriterionTest extends TestCase
     {
         $dummyMessageMock = $this->createMessageAdapterMock('Welcome to Mail Filter Project');
 
-        $subjectValuesCriterion = new SubjectValuesCheckCriterion(['Welcome to']);
+        $subjectValuesCriterion = new SubjectCriterion(['Welcome to']);
 
         $subjectCheckResults = $subjectValuesCriterion->checkCriterion($dummyMessageMock);
 
@@ -51,7 +51,7 @@ class SubjectValuesCriterionTest extends TestCase
     {
         $dummyMessageMock = $this->createMessageAdapterMock('Welcome to Mail Filter Project');
 
-        $subjectValuesCriterion = new SubjectValuesCheckCriterion(['Welcome to *', 'Check for this too ... ']);
+        $subjectValuesCriterion = new SubjectCriterion(['Welcome to *', 'Check for this too ... ']);
 
         $subjectCheckResults = $subjectValuesCriterion->checkCriterion($dummyMessageMock);
 
@@ -63,7 +63,7 @@ class SubjectValuesCriterionTest extends TestCase
     {
         $dummyMessageMock = $this->createMessageAdapterMock('Welcome to Mail Filter Project');
 
-        $subjectValuesCriterion = new SubjectValuesCheckCriterion(['Welcome to the', 'Check for this too ... ']);
+        $subjectValuesCriterion = new SubjectCriterion(['Welcome to the', 'Check for this too ... ']);
 
         $subjectCheckResults = $subjectValuesCriterion->checkCriterion($dummyMessageMock);
 

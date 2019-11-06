@@ -7,7 +7,7 @@ namespace MailFilters\Criteria\Criterion;
 use MailFilters\Adapters\MailMessageAdapterInterface;
 use MailFilters\Criteria\AbstractValuesCheckCriterion;
 
-class SubjectValuesCheckCriterion extends AbstractValuesCheckCriterion
+class SubjectCriterion extends AbstractValuesCheckCriterion
 {
     /**
      * @param MailMessageAdapterInterface $mailMessage

@@ -3,12 +3,12 @@ require_once __DIR__ . '/connection/DdeboerImapConnection.php';
 
 use MailFilters\Actions\Action\MoveMailAction;
 use MailFilters\Actions\Action\ReturnValuesAction;
-use MailFilters\Criteria\Criterion\SubjectValuesCheckCriterion;
+use MailFilters\Criteria\Criterion\SubjectCriterion;
 use MailFilters\Filters\Filter;
 use MailFilters\MailFiltersCollection;
 
 //prepare the criteria
-$welcomeSubjectCriterion = new SubjectValuesCheckCriterion('*Welcome*');
+$welcomeSubjectCriterion = new SubjectCriterion('*Welcome*');
 
 //prepare the actions
 $returnValuesAction = new ReturnValuesAction(['specialIdSubject' => true]);
