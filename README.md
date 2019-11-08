@@ -1,6 +1,11 @@
 PHP Mail Filters Library
 ===========================
 
+[![Build Status](https://travis-ci.org/aymanrb/php-mail-filters.svg?branch=master)](https://travis-ci.org/aymanrb/php-mail-filters)
+[![Latest Stable Version](https://poser.pugx.org/aymanrb/php-mail-filters/v/stable)](https://packagist.org/packages/aymanrb/php-mail-filters)
+[![Latest Unstable Version](https://poser.pugx.org/aymanrb/php-mail-filters/v/unstable)](https://packagist.org/packages/aymanrb/php-mail-filters)
+[![License](https://poser.pugx.org/aymanrb/php-mail-filters/license)](https://packagist.org/packages/aymanrb/php-mail-filters)
+
 This is a PHP package that enables you to create handy filtering features on E-mail messages (similar to that of Gmail filters feature) utilizing the [PHP IMAP extension](https://php.net/manual/book.imap.php). The library makes it easy to hook up your own IMAP connection to it, all you need to do is implement few adapter methods for your library needed for the filtering and actions functionality.
 
 Currently the adapter is implemented for the following IMAP libraries: 
